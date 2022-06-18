@@ -1,26 +1,25 @@
 import React, { useEffect } from "react";
 import { HiDownload } from "react-icons/hi";
 import { AiOutlineLink, AiFillDelete } from "react-icons/ai";
-import { SavePost } from "../../lib/Feed.sanity";
+import { deletePost, SavePost } from "../../lib/Feed.sanity";
 interface Props {
   item: {
     _id: string;
     image: {
       url: string;
     };
-
+    PostedBY: [any];
+    author: string;
     destination: string;
     save: any;
   };
   userID: string;
 }
 const PostCard = ({ item, userID }: Props) => {
-  const { _id, image, destination, save } = item;
+  const { _id, image, destination, save, author, PostedBY } = item;
   const [postHover, setPostHover] = React.useState(false);
-
   //! to keep track the post is saved or not
   const [savePost, setSavePost] = React.useState(false);
-  
 
   //! is saved
   const isSaves = !!item?.save?.filter((post: any) => {
@@ -35,7 +34,6 @@ const PostCard = ({ item, userID }: Props) => {
     console.log(res);
     await setSavePost(true);
   };
-
   return (
     <div
       onMouseEnter={() => setPostHover(true)}
@@ -94,11 +92,18 @@ const PostCard = ({ item, userID }: Props) => {
                   <AiOutlineLink className="text-black text-xl" />
                   {destination.slice(8, 17)}...
                 </a>
-
                 {/* Delete  only author can delete*/}
-                <div className="bg-white h-8 w-8 rounded-full cursor-pointer center ">
-                  <AiFillDelete className="text-black text-xl" />
-                </div>
+                {author == userID && (
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      deletePost(_id);
+                    }}
+                    className="bg-white h-8 w-8 rounded-full cursor-pointer center "
+                  >
+                    <AiFillDelete className="text-black text-xl" />
+                  </div>
+                )}
               </div>
             )}
           </div>

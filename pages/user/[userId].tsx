@@ -1,3 +1,4 @@
+import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { fetchUsers } from "../../lib/CreateUser.sanity";
@@ -14,7 +15,11 @@ const UserId = () => {
     };
     fetch();
   }, []);
-  return <div>UserId</div>;
+  return (
+    <div>
+      <button onClick={() => signOut()}>SignOut</button>
+    </div>
+  );
 };
 
 export default UserId;

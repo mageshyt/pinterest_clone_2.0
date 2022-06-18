@@ -9,11 +9,12 @@ export const fetchPost = async () => {
   },
       _id,
       destination,
-      postedBy->{
-        _id,
-        userName,
-        image
+      PostedBY->{
+       _id,
+          username,
+          profile_img
       },
+      "author":author._ref,
       save[]{
         _key,
         PostedBY->{
@@ -50,4 +51,17 @@ export const SavePost = async (postId: string, userID: string) => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+export const deletePost = async (postId: string) => {
+  const result = await client
+    .delete(postId)
+    .then((res) => {
+      console.log(res);
+      window.location.reload();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return result;
 };
