@@ -1,4 +1,5 @@
 import { signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 import React from "react";
 import {
   AiOutlineSearch,
@@ -14,15 +15,16 @@ const style = {
 
 interface Props {
   userImage: string | undefined | null;
+  UserId: string | undefined | null;
 }
 
-const RightContainer = ({ userImage }: Props) => {
+const RightContainer = ({ userImage, UserId }: Props) => {
+  const router = useRouter();
   return (
     <div className="flex items-center space-x-2">
       <div className={style.Icon_bg}>
         <AiFillBell className={style.icon} />
       </div>
-
       {/* Fill message */}
       <div className={style.Icon_bg}>
         <AiFillMessage className={style.icon} />
@@ -31,7 +33,9 @@ const RightContainer = ({ userImage }: Props) => {
       {userImage && (
         <div className={style.Icon_bg}>
           <img
-            onClick={() => signOut()}
+            onClick={() => {
+              router.push(`/user/${UserId}`);
+            }}
             className="rounded-full w-8 h-8 cursor-pointer object-contain"
             src={userImage}
             alt="user"

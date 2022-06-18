@@ -12,10 +12,7 @@ export const user = {
     {
       name: "profile_img",
       title: "Profile Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
+      type: "string",
     },
   ],
 };

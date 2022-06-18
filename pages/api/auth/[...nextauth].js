@@ -14,6 +14,7 @@ export default NextAuth({
       // Do something with the user and account
       return user;
     },
+
     redirect: async (url, _baseUrl) => {
       if (url === "/login") {
         return Promise.resolve("/");

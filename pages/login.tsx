@@ -3,15 +3,17 @@ import { useSession, signIn } from "next-auth/react";
 
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/router";
+
+
 const login = () => {
   const LoginVideo = "/videos/share.mp4";
-  const data = useSession();
+  const { status, user }: any = useSession();
   const route = useRouter(); //! router
   useEffect(() => {
-    if (data.status === "authenticated") {
+    if (status === "authenticated") {
       route.push("/");
     }
-  }, [data.status]);
+  }, [status]);
   return (
     <div className=" bg-blackOverlay w-full  h-screen">
       <div className="relative  h-full w-full">
@@ -30,7 +32,9 @@ const login = () => {
         {/* Logo */}
 
         <div
-          onClick={() => signIn()}
+          onClick={() => {
+            signIn();
+          }}
           className="px-8 cursor-pointer py-4 rounded-lg flex bg-white "
         >
           <div>

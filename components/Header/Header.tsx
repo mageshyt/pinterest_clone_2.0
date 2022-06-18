@@ -7,9 +7,19 @@ import SearchBar from "./searchBar.components";
 const styles = {
   wrapper: " flex w-full items-center justify-between gap-3 p-4 h-[80px] ",
 };
-const Header = () => {
-  const { data: session } = useSession();
-  const userImage = session?.user?.image;
+
+interface Props {
+  user: {
+    profile_img: string | undefined | null;
+    _id: string;
+    name: string;
+  };
+}
+
+const Header = ({ user }: Props) => {
+  const profile_img = user?.profile_img;
+  const _id = user?._id;
+
   return (
     <div className={styles.wrapper}>
       {/* left -logo today Home*/}
@@ -23,7 +33,7 @@ const Header = () => {
       </div>
       {/* right */}
       <div>
-        <RightContainer userImage={userImage} />
+        <RightContainer userImage={profile_img} UserId={_id} />
       </div>
     </div>
   );

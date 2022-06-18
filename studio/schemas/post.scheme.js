@@ -17,9 +17,9 @@ export const pin_post = {
     },
     // ! post Description
     {
-      name: "description",
-      title: "Description",
-      type: "text",
+      name: "destination",
+      title: "destination",
+      type: "string",
     },
     // !post image
     {
