@@ -3,6 +3,7 @@ import { useSession, signOut } from "next-auth/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import Header from "../components/Header/Header";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -15,15 +16,13 @@ const Home: NextPage = () => {
   }, [data.status]);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="h-screen select-none p-2">
       <Head>
         <title>Pinterest Clone</title>
         <link rel="icon" href="/pinterest_favicon_icon.png" />
       </Head>
-
-      <h1>Home</h1>
-
-      <button onClick={() => signOut()}>Sign out</button>
+      {/* header */}
+      <Header />
     </div>
   );
 };
