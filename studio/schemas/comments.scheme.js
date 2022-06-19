@@ -9,10 +9,9 @@ export const comments = {
       type: "string",
     },
     {
-      name: "PostedBY",
+      name: "comment_by",
       title: "Posted By",
-      type: "reference",
-      to: [{ type: "user" }],
+      type: "postedBy",
     },
   ],
 };

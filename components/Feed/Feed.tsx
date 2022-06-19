@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchPost } from "../../lib/Feed.sanity";
-import PostCard from "./PostCard";
+import { fetchPost } from "../../lib/Post.sanity";
 import MasonryLayout from "../../lib/MasonryLayout";
 const Feed = ({ user }: any) => {
   const [post, setPost] = useState([]);
@@ -8,10 +7,14 @@ const Feed = ({ user }: any) => {
   useEffect(() => {
     const fetch = async () => {
       const result = await fetchPost();
-      setPost(result);
+      const filter_result = result.filter((item: any) => {
+        return !item._id.includes("drafts");
+      });
+
+      setPost(filter_result);
     };
     fetch();
-  }, []);
+  }, [userId]);
 
   return (
     <div className="h-screen  center md:block  w-full   ">

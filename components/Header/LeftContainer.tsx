@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 const styles = {
   button:
@@ -7,9 +8,10 @@ const styles = {
 };
 const LeftContainer = () => {
   const [status, setStatus] = React.useState("home");
+  const router = useRouter();
   return (
     <>
-      <div className={styles.logo}>
+      <div onClick={() => router.push("/")} className={styles.logo}>
         <Image
           height={30}
           width={30}

@@ -65,25 +65,15 @@ export const categories = [
   },
 ];
 
-export const feedQuery = `*[_type == "pin"] | order(_createdAt desc) {
-  image{
-    asset->{
-      url
-    }
-  },
-      _id,
-      destination,
-      postedBy->{
-        _id,
-        userName,
-        image
-      },
-      save[]{
-        _key,
-        postedBy->{
-          _id,
-          userName,
-          image
-        },
-      },
-    } `;
+const bg_image = [
+  "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
+  "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  "https://images.unsplash.com/photo-1574281193679-789c4602b15c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+];
+
+export const randomImage = () => {
+  const random =
+    "https://source.unsplash.com/1600x900/?nature,photography,technology";
+  return random;
+};
