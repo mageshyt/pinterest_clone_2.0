@@ -5,12 +5,12 @@ import LeftContainer from "./LeftContainer";
 import RightContainer from "./rightContainer.components";
 import SearchBar from "./searchBar.components";
 const styles = {
-  wrapper: " flex w-full items-center justify-between gap-3 p-4 h-[80px] ",
+  wrapper: " flex w-full  items-center justify-between gap-3 p-4 h-[80px] ",
 };
 
 interface Props {
   user: {
-    profile_img: string | undefined | null;
+    profile_img: string | undefined;
     _id: string;
     name: string;
   };

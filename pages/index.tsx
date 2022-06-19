@@ -10,7 +10,7 @@ import Category from "../components/category/Category";
 import Feed from "../components/Feed/Feed";
 
 const style = {
-  wrapper: "h-screen select-none  w-full p-2",
+  wrapper: "h-screen overflow-hidden relative select-none w-full p-2",
   categoryContainer: " flex mt-4 w-full items-center space-x-3   ",
 };
 const Home: NextPage = () => {
@@ -50,8 +50,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/pinterest_favicon_icon.png" />
       </Head>
       {/* header */}
-      <Header user={user} />
+      <div className="z-50">
+        <Header user={user} />
+      </div>
       {/* Category */}
+
       <div className={style.categoryContainer}>
         <h1 className="font-bold text-xl hidden md:block md:text-2xl">
           Category
@@ -62,8 +65,22 @@ const Home: NextPage = () => {
       </div>
 
       {/* Post */}
-      <div>
+      <div className="h-screen overflow-hidden">
         <Feed user={user} />
+      </div>
+
+      {/* Create pin */}
+      <div className="absolute center rounded-full shadow-xl border  bg-[#fffbfb]  right-3 h-[50px]  bottom-[50px] w-[50px]">
+        <div className="hover:bg-[#e1e1e1] rounded-full  h-10 w-10 center">
+          <button
+            onClick={() => {
+              router.push("/createPost");
+            }}
+            className="text-black  text-3xl"
+          >
+            +
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -38,7 +38,7 @@ const PostCard = ({ item, userID }: Props) => {
     <div
       onMouseEnter={() => setPostHover(true)}
       onMouseLeave={() => setPostHover(false)}
-      className="cursor-zoom-in relative w-[250px]  overflow-hidden hover:shadow-xl rounded-lg animate"
+      className="cursor-zoom-in relative w-[250px] hover:scale-105 animate duration-300 ease-in-out  overflow-hidden hover:shadow-xl rounded-lg animate"
     >
       <img src={image?.url} alt="" className="w-[250px] h-full rounded-lg" />
 

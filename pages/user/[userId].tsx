@@ -10,7 +10,7 @@ const UserId = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const result = await fetchUsers(userId);
+    const result = await fetchUsers(userId);
       setUser(result[0]);
     };
     fetch();
