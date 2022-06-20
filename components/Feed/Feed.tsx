@@ -16,7 +16,7 @@ const Feed = ({ user, searchQuery }: any) => {
 
   useEffect(() => {
     const fetch = async () => {
-      if (searchQuery !== "All") {
+      if (searchQuery !== "All" && searchQuery !== "") {
         const category_post = await Search(searchQuery);
         console.log(category_post);
         setPost(category_post);

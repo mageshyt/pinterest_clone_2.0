@@ -34,7 +34,6 @@ const UserId = () => {
   const router = useRouter();
   const { userId }: any = router.query;
   const image = randomImage();
-  const user: User | any = fetchUser(userId);
 
   const { data } = useSession();
 
@@ -42,10 +41,12 @@ const UserId = () => {
   const [active, setActive] = useState("created");
 
   const currentUser = data?.user?.email?.split("@")[0];
+  const user: User | any = fetchUser(userId);
 
   const posts = useUserPost(userId);
 
-  const savedPost = useSavedPost(userId);
+  const savedPosts = useSavedPost(userId);
+
   return (
     <div className="relative pb-2 h-full justify-center items-center">
       {user && (
@@ -54,14 +55,14 @@ const UserId = () => {
             <img className={style.bannerImage} src={image} alt="user-pic" />
             {/* user image */}
             <img
-              src={user.profile_img}
+              src={user?.profile_img}
               alt="user-image"
               className={style.userImage}
             />
             {/* user details*/}
             <div>
               <h1 className="font-bold text-2xl text-center mt-3">
-                {user.username}
+                {user?.username}
               </h1>
             </div>
             {currentUser === user._id && (
@@ -117,8 +118,8 @@ const UserId = () => {
             {/* Saved post */}
             {active === "saved" && (
               <div className="h-full pb-[150px] overflow-y-scroll">
-                {savedPost && (
-                  <MasonryLayout posts={savedPost} userId={userId} />
+                {savedPosts && (
+                  <MasonryLayout posts={savedPosts} userId={userId} />
                 )}
               </div>
             )}

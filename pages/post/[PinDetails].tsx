@@ -21,7 +21,6 @@ const PinDetails = () => {
   const user: any = fetchUser();
   //! to keep track the comment
   const [comment, setComment] = useState("");
-  const [addingComment, setAddingComment] = useState(false);
 
   const [post, setPost] = useState<any>(null);
 
@@ -31,7 +30,7 @@ const PinDetails = () => {
   };
   useEffect(() => {
     fetchPost_details();
-  }, [pinId]);
+  }, []);
 
   //! to add comment
   const addComment = async () => {
@@ -39,14 +38,13 @@ const PinDetails = () => {
       const res = await UpdateComment(pinId, comment, user?._id).then(() => {
         setComment("");
         fetchPost_details();
-        router.reload();
       });
     }
   };
   return (
     post && (
       <div className="  h-screen w-full ">
-        <Header  user={user} />
+        <Header user={user} />
         {!post && <Spinner message="Preparing details" />}
         <div className={style.largeCard}>
           {/* pin image */}
