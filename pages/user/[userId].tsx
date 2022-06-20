@@ -118,7 +118,7 @@ const UserId = () => {
             {active === "saved" && (
               <div className="h-full pb-[150px] overflow-y-scroll">
                 {savedPost && (
-                  <MasonryLayout   posts={savedPost} userId={userId} />
+                  <MasonryLayout posts={savedPost} userId={userId} />
                 )}
               </div>
             )}
@@ -126,7 +126,7 @@ const UserId = () => {
         </div>
       )}
 
-      {!user && <Spinner />}
+      {!user && <Spinner message="fetching the user" />}
     </div>
   );
 };

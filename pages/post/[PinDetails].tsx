@@ -23,7 +23,7 @@ const PinDetails = () => {
   const [comment, setComment] = useState("");
   const [addingComment, setAddingComment] = useState(false);
 
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState<any>(null);
 
   const fetchPost_details = async () => {
     const result = await fetchPostInfo(pinId);
@@ -46,8 +46,8 @@ const PinDetails = () => {
   return (
     post && (
       <div className="  h-screen w-full ">
-        <Header user={user} />
-        {!post && <Spinner />}
+        <Header  user={user} />
+        {!post && <Spinner message="Preparing details" />}
         <div className={style.largeCard}>
           {/* pin image */}
           <div className="relative center md:block w-full ">

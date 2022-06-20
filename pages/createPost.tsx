@@ -36,7 +36,7 @@ const CreatePost = () => {
         contentType: selectedFile.type,
         filename: selectedFile.name,
       })
-      .then((document) => {
+      .then((document: any) => {
         setImageAsset(document);
         setImageUrl(document.url);
         console.log(document);

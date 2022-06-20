@@ -17,7 +17,7 @@ interface Props {
   setSearchQuery: (query: string) => void;
 }
 
-const Header = ({ user, setSearchQuery }: Props) => {
+const Header = ({ user, setSearchQuery }: any) => {
   const profile_img = user?.profile_img;
   const _id = user?._id;
 
