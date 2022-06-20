@@ -15,7 +15,7 @@ const Feed = ({ user }: any) => {
     };
     fetch();
   }, [userId]);
-
+  
   return (
     <div className="h-screen  center md:block  w-full   ">
       <div className="h-full pb-[150px] overflow-y-scroll">

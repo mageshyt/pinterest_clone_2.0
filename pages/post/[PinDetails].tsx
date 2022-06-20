@@ -11,7 +11,7 @@ const style = {
   icon: "text-2xl cursor-pointer",
   title: "xl:text-4xl md:text-3xl break-words mt-3 text-2xl font-bold",
   largeCard:
-    "flex-1 flex-col sm:justify-center sm:flex-row max-w-[900px]  bg-[#ffffff] flex  shadow-2xl p-3 rounded-xl  mx-auto ",
+    "flex-1 mt-3 flex-col sm:justify-center sm:flex-row max-w-[900px]  bg-[#ffffff] flex  shadow-xl p-3 rounded-xl  mx-auto ",
 };
 
 const PinDetails = () => {
@@ -42,10 +42,9 @@ const PinDetails = () => {
       });
     }
   };
-  console.log(post);
   return (
     post && (
-      <div className=" bg-slate-100 h-screen w-full ">
+      <div className="  h-screen w-full ">
         <Header user={user} />
         {!post && <Spinner />}
         <div className={style.largeCard}>

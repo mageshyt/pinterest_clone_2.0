@@ -9,6 +9,7 @@ import { fetchUser } from "../lib/hooks/user.hook";
 import Category from "../components/category/Category";
 import Feed from "../components/Feed/Feed";
 import Spinner from "../lib/Spinner";
+import { Search } from "../lib/Post.sanity";
 
 const style = {
   wrapper: "h-screen overflow-hidden relative select-none w-full p-2",
@@ -21,6 +22,8 @@ const Home: NextPage = () => {
 
   //! to keep track the category
   const [category, setCategory] = useState<any>("All");
+
+  const [post, setPost] = useState<any>([]);
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("/login");
@@ -30,7 +33,7 @@ const Home: NextPage = () => {
     }
   }, [status]);
   const user: any = fetchUser();
-
+  console.log("Post 😑", post);
   return (
     <div className={style.wrapper}>
       <Head>
@@ -50,7 +53,12 @@ const Home: NextPage = () => {
               Category
             </h1>
             <div className="flex w-full pl-[200px] md:pl-0 justify-evenly overflow-x-scroll">
-              <Category setCategory={setCategory} current_category={category} />
+              <Category
+                category={category}
+                setPost={setPost}
+                setCategory={setCategory}
+                current_category={category}
+              />
             </div>
           </div>
 
@@ -74,9 +82,7 @@ const Home: NextPage = () => {
           </div>
         </>
       ) : (
-        <div className="h-full w-full center">
-          <Spinner />
-        </div>
+        <div className="h-full w-full center">{/* <Spinner /> */}</div>
       )}
     </div>
   );

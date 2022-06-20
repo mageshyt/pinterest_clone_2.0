@@ -57,7 +57,6 @@ export const deletePost = async (postId: string) => {
   const result = await client
     .delete(postId)
     .then((res) => {
-      console.log(res);
       window.location.reload();
     })
     .catch((err) => {
@@ -120,4 +119,36 @@ export const UpdateComment = async (
     .commit();
   console.log(res);
   return res;
+};
+
+export const Search = async (search: string) => {
+  const query = `*[_type == "pin" && title match '${search}*' || category match '${search}*' || about match '${search}*']{
+        category,
+      destination,
+      about,
+      title,
+   "image":image.asset->{
+      url
+  },
+ "posted": author->{
+       _id,
+          username,
+          profile_img
+      },
+      category,
+      destination,
+      about,
+      title,
+comment[]{
+      comment,
+      _key,
+    comment_by->{
+  username,
+  profile_img
+},
+    }
+          }`;
+  const result = await client.fetch(query);
+  console.log(result);
+  return result;
 };

@@ -25,7 +25,6 @@ const PostCard = ({ item, userID }: Props) => {
   //! to keep track the post is saved or not
   const [savePost, setSavePost] = React.useState(false);
 
-  console.log({ post_id });
 
   //! to check post is saved or not
   const isSaved = !!item?.save?.filter((post: any) => {
