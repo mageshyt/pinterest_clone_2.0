@@ -20,12 +20,11 @@ interface Props {
   userID: string;
 }
 const PostCard = ({ item, userID }: Props) => {
-  const { _id, image, destination, save, author, postedBY, post_id } = item;
+  const { _id, image, destination, author, postedBY, post_id } = item;
+
   const [postHover, setPostHover] = React.useState(false);
   //! to keep track the post is saved or not
   const [savePost, setSavePost] = React.useState(false);
-
-
   //! to check post is saved or not
   const isSaved = !!item?.save?.filter((post: any) => {
     return post?.userId == userID;

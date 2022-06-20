@@ -28,8 +28,11 @@ export const fetchPost = async () => {
       },
     } `;
   const result = await client.fetch(query);
+  const filter_result = result.filter((item: any) => {
+    return !item._id.includes("drafts");
+  });
 
-  return result;
+  return filter_result;
 };
 //! to save post
 export const SavePost = async (postId: string, userID: string) => {
@@ -77,6 +80,7 @@ export const fetchPostInfo = async (postId: string) => {
    "image":image.asset->{
       url
   },
+  _id,
  "posted": author->{
        _id,
           username,
@@ -123,17 +127,28 @@ export const UpdateComment = async (
 
 export const Search = async (search: string) => {
   const query = `*[_type == "pin" && title match '${search}*' || category match '${search}*' || about match '${search}*']{
-        category,
+          category,
       destination,
       about,
       title,
    "image":image.asset->{
       url
   },
- "posted": author->{
+  _id,
+ "postedBY": author->{
        _id,
           username,
           profile_img
+      },
+        save[]{
+        _key,
+        PostedBY->{
+          _id,
+          username,
+          profile_img
+        },
+        userId,
+         
       },
       category,
       destination,
@@ -145,10 +160,15 @@ comment[]{
     comment_by->{
   username,
   profile_img
-},
+  },
+
+
     }
+
           }`;
   const result = await client.fetch(query);
-  console.log(result);
-  return result;
+  const filter_result = result.filter((item: any) => {
+    return !item?._id.includes("drafts");
+  });
+  return filter_result;
 };

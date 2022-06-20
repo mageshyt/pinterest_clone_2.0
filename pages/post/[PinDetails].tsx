@@ -39,6 +39,7 @@ const PinDetails = () => {
       const res = await UpdateComment(pinId, comment, user?._id).then(() => {
         setComment("");
         fetchPost_details();
+        router.reload();
       });
     }
   };

@@ -23,7 +23,8 @@ const Home: NextPage = () => {
   //! to keep track the category
   const [category, setCategory] = useState<any>("All");
 
-  const [post, setPost] = useState<any>([]);
+  //! to keep track the search query
+  const [searchQuery, setSearchQuery] = useState<any>("");
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("/login");
@@ -33,7 +34,7 @@ const Home: NextPage = () => {
     }
   }, [status]);
   const user: any = fetchUser();
-  console.log("Post 😑", post);
+
   return (
     <div className={style.wrapper}>
       <Head>
@@ -44,7 +45,7 @@ const Home: NextPage = () => {
       {user ? (
         <>
           <div className="z-50">
-            <Header user={user} />
+            <Header setSearchQuery={setSearchQuery} user={user} />
           </div>
           {/* Category */}
 
@@ -54,9 +55,8 @@ const Home: NextPage = () => {
             </h1>
             <div className="flex w-full pl-[200px] md:pl-0 justify-evenly overflow-x-scroll">
               <Category
-                category={category}
-                setPost={setPost}
                 setCategory={setCategory}
+                setSearchQuery={setSearchQuery}
                 current_category={category}
               />
             </div>
@@ -64,7 +64,7 @@ const Home: NextPage = () => {
 
           {/* Post */}
           <div className="h-screen overflow-hidden">
-            <Feed user={user} />
+            <Feed user={user} searchQuery={searchQuery} />
           </div>
 
           {/* Create pin */}

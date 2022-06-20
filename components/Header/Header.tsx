@@ -14,9 +14,10 @@ interface Props {
     _id: string;
     name: string;
   };
+  setSearchQuery: (query: string) => void;
 }
 
-const Header = ({ user }: Props) => {
+const Header = ({ user, setSearchQuery }: Props) => {
   const profile_img = user?.profile_img;
   const _id = user?._id;
 
@@ -29,7 +30,7 @@ const Header = ({ user }: Props) => {
       </div>
       {/* middle */}
       <div className="flex-1  flex">
-        <SearchBar />
+        <SearchBar setSearchQuery={setSearchQuery} />
       </div>
       {/* right */}
       <div>

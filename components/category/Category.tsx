@@ -1,32 +1,17 @@
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { categories } from "../../assets/data";
-import { Search } from "../../lib/Post.sanity";
 
 interface Props {
   current_category: string;
   setCategory: (category: string) => void;
-  setPost: (post: any) => void;
-  category: string;
+  setSearchQuery: (query: string) => void;
 }
 
 const style = {
   text: "text-gray-500 hover:text-purple-500 cursor-pointer text-md font-semibold",
 };
-const Category = ({
-  setCategory,
-  current_category,
-  setPost,
-  category,
-}: Props) => {
-  useEffect(() => {
-    const fetch = async () => {
-      if (category !== "All") {
-        const category_post = await Search(category);
-        setPost(category_post);
-      }
-    };
-    fetch();
-  }, [category]);
+const Category = ({ setCategory, current_category, setSearchQuery }: Props) => {
   return (
     <>
       {categories.map((item: any, index: number) => {
@@ -36,6 +21,7 @@ const Category = ({
             key={index}
             onClick={() => {
               setCategory(name);
+              setSearchQuery(name);
             }}
             className=" hover:bg-gray-300 animate   p-2 rounded-xl"
           >
