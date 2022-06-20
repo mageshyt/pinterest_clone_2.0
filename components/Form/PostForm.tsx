@@ -17,6 +17,7 @@ const PostForm = ({ user, imageAsset, userId }: any) => {
   const [destination, setDestination] = useState("");
   const [about, setAbout] = useState("");
   const [category, setCategory] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -34,12 +35,18 @@ const PostForm = ({ user, imageAsset, userId }: any) => {
       category,
       about,
     };
-    toast.loading("Uploading...");
+    const load = toast.loading("Please wait...");
+    setLoading(true);
     UploadPost(newPost, imageAsset, userId).then(() => {
-      toast.success("Uploaded successfully");
+      toast.update(load, {
+        render: "Successfully uploaded",
+        type: "success",
+        autoClose: 2000,
+        isLoading: false,
+      });
       setTimeout(() => {
         router.push("/");
-      }, 1200);
+      }, 2200);
     });
   });
   return (
@@ -120,8 +127,13 @@ const PostForm = ({ user, imageAsset, userId }: any) => {
         ) : null}
         {/* submit */}
         <button
+          disabled={loading}
           type="submit"
-          className="bg-blue-500 hover:bg-blue-600 rounded-full px-4 p-2"
+          className={
+            loading
+              ? "bg-blue-500 hover:bg-blue-600 rounded-full px-4 p-2 cursor-not-allowed"
+              : "bg-blue-500 hover:bg-blue-600 rounded-full px-4 p-2 "
+          }
         >
           <span className="text-2xl font-semibold text-white">Post</span>
         </button>

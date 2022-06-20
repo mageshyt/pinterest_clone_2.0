@@ -24,7 +24,6 @@ const CreatePost = () => {
 
   const [loading, setLoading] = useState(false);
   //! image
-  const [image, setImage] = useState();
   const [imageAsset, setImageAsset] = useState();
   const [imageUrl, setImageUrl] = useState("");
   const uploadImage = (e: any) => {
@@ -83,6 +82,7 @@ const CreatePost = () => {
 
           <div className="flex-1 h-[400px] ">
             <PostForm
+              loading={loading}
               user={user}
               imageAsset={imageAsset}
               userId={currentUser}

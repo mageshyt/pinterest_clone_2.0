@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchPost, Search } from "../../lib/Post.sanity";
+import { deletePost, fetchPost, Search } from "../../lib/Post.sanity";
 import MasonryLayout from "../../lib/MasonryLayout";
 const Feed = ({ user, searchQuery }: any) => {
   const [post, setPost] = useState([]);
@@ -9,7 +9,6 @@ const Feed = ({ user, searchQuery }: any) => {
     const fetchPost_details = async () => {
       const result = await fetchPost();
       setPost(result);
-      console.log("fetching ....");
     };
     fetchPost_details();
   }, []);
