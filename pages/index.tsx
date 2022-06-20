@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useSession, signOut } from "next-auth/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -9,17 +9,17 @@ import { fetchUser } from "../lib/hooks/user.hook";
 import Category from "../components/category/Category";
 import Feed from "../components/Feed/Feed";
 import Spinner from "../lib/Spinner";
-import { Search } from "../lib/Post.sanity";
+import { deletePost, fetchPost, Search } from "../lib/Post.sanity";
 
 const style = {
   wrapper: "h-screen overflow-hidden relative select-none w-full p-2",
   categoryContainer: " flex mt-4 w-full items-center space-x-3   ",
 };
-const Home: NextPage = () => {
+const Home: NextPage = ({ posts, name }: any) => {
   const router = useRouter(); //! router.
   //! session
   const { data, status } = useSession();
-
+  // console.log("data", posts);
   //! to keep track the category
   const [category, setCategory] = useState<any>("All");
 
@@ -64,7 +64,7 @@ const Home: NextPage = () => {
 
           {/* Post */}
           <div className="h-screen overflow-hidden">
-            <Feed user={user} searchQuery={searchQuery} />
+            <Feed user={user} posts={posts} searchQuery={searchQuery} />
           </div>
 
           {/* Create pin */}
@@ -89,3 +89,18 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+export const getStaticProps: GetStaticProps = async () => {
+  console.log("fetching post");
+
+  const posts = await fetchPost();
+  const name = "category";
+
+  return {
+    // pass the data to the React
+    props: {
+      posts,
+      name,
+    },
+    revalidate: 60,
+  };
+};

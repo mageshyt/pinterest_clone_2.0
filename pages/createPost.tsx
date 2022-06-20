@@ -27,7 +27,6 @@ const CreatePost = () => {
   const [imageAsset, setImageAsset] = useState();
   const [imageUrl, setImageUrl] = useState("");
   const uploadImage = (e: any) => {
-    console.log(e.target.files[0]);
     const selectedFile = e.target.files[0];
     setLoading(true);
     client.assets
@@ -38,7 +37,7 @@ const CreatePost = () => {
       .then((document: any) => {
         setImageAsset(document);
         setImageUrl(document.url);
-        console.log(document);
+
         setLoading(false);
       })
       .catch((error) => {

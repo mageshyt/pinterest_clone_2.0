@@ -60,6 +60,7 @@ export const deletePost = async (postId: string) => {
   const result = await client
     .delete(postId)
     .then((res) => {
+      console.log("deleted");
       window.location.reload();
     })
     .catch((err) => {
